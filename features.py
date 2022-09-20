@@ -1,11 +1,11 @@
 details = []
 
-class TotalBalance:
+class Balance:
     # def __init__(self, name):
     #     self.name = name
 
     def __str__(self):
-        title = "_"*26 + "Summary" + "_"*26 + "\n"
+        title = "_"*23 + "Budget Report" + "_"*23 + "\n"
         items = ""
         total = 0
         for item in details:
@@ -15,6 +15,9 @@ class TotalBalance:
 
         output = title + items + "Total: " + str(total)
         return output
+
+    # def display_incomes(self, category):
+
 
 class Category:
     def __init__(self, category, description, amount):
@@ -28,8 +31,4 @@ class Category:
 
     def withdraw(self):
         self.details.append({'category': self.category, 'description': self.description, 'amount': -self.amount})
-
-    # def display(self):
-    #     print(self.details)
-
 

@@ -12,7 +12,7 @@ while True:
     for count, items in enumerate(income_category):
         print(count+1, items)
 
-    x = int(input('''Enter a number to add an income in one of the above categories. Enter 0 to exit income change to the Expense section.'''))
+    x = int(input('''Enter a number to add an income in one of the above categories. Enter 0 to exit Income and change to the Expense section.'''))
     
     if x in range (1, 4):
         category = income_category[x-1]
@@ -20,7 +20,7 @@ while True:
         amount = float(input('Enter the amount: '))
         user_income = features.Category(category, description, amount)
         user_income.add()
-        # user_income.display()
+
     elif x == 0:
         print('Now choose a category for the expense.')
         break
@@ -36,9 +36,9 @@ while True:
         amount = float(input('Enter the amount: '))
         user_expense = features.Category(category, description, amount)
         user_expense.withdraw()
-        # user_expense.display()
+
     elif x == 0:
         print('Printing budget report...\n')
         break
 
-print(features.TotalBalance())
+print(features.Balance())

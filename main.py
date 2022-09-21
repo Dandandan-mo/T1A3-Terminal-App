@@ -6,15 +6,16 @@ This app helps you track your incomes and expenses.
 ''')
 
 while True:
-    f.options(f.income_category)
+    display = f.Category(f.income_category)
+    display.options(f.income_category)
 
-    x = f.instruction('income')
+    x = display.instruction('income')
 
     if x in range (1, len(f.income_category)+1):
         category = f.income_category[x-1]
         description = input('Enter description for the income: ')
         amount = float(input('Enter the amount: '))
-        user_income = f.Category(category, description, amount)
+        user_income = f.Transactions(category, description, amount)
         user_income.add()
 
     elif x == 0:
@@ -22,18 +23,19 @@ while True:
         break
 
     elif x < 0 or x >= len(f.income_category)+1:
-        f.new_category(f.income_category)
+        display.new_category(f.income_category)
 
 while True:
-    f.options(f.expense_category)
+    display = f.Category(f.expense_category)
+    display.options(f.expense_category)
 
-    x = f.instruction('expense')
+    x = display.instruction('expense')
 
     if x in range (1, len(f.expense_category)+1):
         category = f.expense_category[x-1]
         description = input('Enter description for the expense: ')
         amount = float(input('Enter the amount: '))
-        user_expense = f.Category(category, description, amount)
+        user_expense = f.Transactions(category, description, amount)
         user_expense.withdraw()
 
     elif x == 0:
@@ -41,6 +43,6 @@ while True:
         break
 
     elif x < 0 or x >= len(f.expense_category)+1:
-        f.new_category(f.expense_category)
+        display.new_category(f.expense_category)
 
 print(f.Balance())

@@ -18,11 +18,7 @@ class Category:
         new = input('Please enter the name of the category: ')
         return category_list.append(new.capitalize())
 
-class Balance:
-    # def __init__(self, name):
-    #     self.name = name
-
-    def __str__(self):
+    def show_balance(self):
         title = "_"*23 + "Budget Report" + "_"*23 + "\n"
         items = ""
         total = 0
@@ -32,9 +28,7 @@ class Balance:
             total += item['amount']
 
         output = title + items + "Balance: " + str(total)
-        return output
-
-    # def display_incomes(self, category):
+        print(output)
 
 class Transactions:
     def __init__(self, category, description, amount):

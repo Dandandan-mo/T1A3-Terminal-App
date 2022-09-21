@@ -45,4 +45,4 @@ while True:
     elif x < 0 or x >= len(f.expense_category)+1:
         display.new_category(f.expense_category)
 
-print(f.Balance())
+display.show_balance()

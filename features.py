@@ -1,5 +1,16 @@
 details = []
 
+income_category = ['Salary', 'Investment', 'Gifts']
+expense_category = ['Housing', 'Food', 'Transportation', 'Entertainment', 'Medical']
+
+def greet(section):
+    return int(input(f'''Enter an integer number to add an {section} in one of the above categories. Enter any integer other than 0 or the ones listed to customise a new category. Enter 0 to exit {section.capitalize()} Section.'''))
+
+def new_category(a_category):
+    new = input('Please enter the name of the category: ')
+    return a_category.append(new.capitalize())
+
+
 class Balance:
     # def __init__(self, name):
     #     self.name = name
@@ -13,11 +24,10 @@ class Balance:
 
             total += item['amount']
 
-        output = title + items + "Total: " + str(total)
+        output = title + items + "Balance: " + str(total)
         return output
 
     # def display_incomes(self, category):
-
 
 class Category:
     def __init__(self, category, description, amount):

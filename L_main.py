@@ -1,35 +1,46 @@
-from L_features import Category
-
-home = Category('Home')
-food = Category('Food')
-transportation = Category('Transportation')
-medical = Category('Medical')
-entertainment = Category('Entertainment')
+import features
 
 print('''
 Welcome to the budget tracker!
 This app helps you track your incomes and expenses.
 ''')
 
-expense_category = ['Home', 'Food', 'Transportation', 'Medical', 'Entertainment']
+income_category = ['Salary', 'Investment', 'Gifts']
+expense_category = ['Housing', 'Food', 'Transportation', 'Utilities', 'Medical']
+
+while True:
+    for count, items in enumerate(income_category):
+        print(count+1, items)
+
+    x = int(input('''Enter a number to add an income in one of the above categories. Enter 0 to exit Income and change to the Expense section.'''))
+    
+    if x in range (1, 4):
+        category = income_category[x-1]
+        description = input('Enter description for the income: ')
+        amount = float(input('Enter the amount: '))
+        user_income = features.Category(category, description, amount)
+        user_income.add()
+
+    elif x == 0:
+        print('Now choose a category for the expense.')
+        break
 
 while True:
     for count, items in enumerate(expense_category):
         print(count+1, items)
 
-    x = int(input('''Enter a number to add an expense in one of the above categories. Enter 0 to exit income change to the Expense section.'''))
-    if x == 0:
-        break
-    elif x in range (1, 6):
-        user_expense = Category(expense_category[x-1])
-        description = input('Enter the description for the expense: ')
+    x = int(input('''Enter a number to add an expense in one of the above categories. Enter 0 to exit and print budget report.'''))
+    if x in range (1, 6):
+        category = expense_category[x-1]
+        description = input('Enter description for the expense: ')
         amount = float(input('Enter the amount: '))
-        user_expense.withdraw(amount, description)
-        print(user_expense.get_balance())
+        user_expense = features.Category(category, description, amount)
+        user_expense.withdraw()
 
-p = input('Press "p" to print the ledger: ')
-if p == 'p':
-    print(home)
-    print(food)
+    elif x == 0:
+        print('Printing budget report...\n')
+        break
+
+print(features.Balance())
 
 

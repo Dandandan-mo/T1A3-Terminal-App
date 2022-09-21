@@ -4,37 +4,6 @@ details = []
 income_category = ['Salary', 'Investment', 'Gifts']
 expense_category = ['Housing', 'Food', 'Transportation', 'Entertainment', 'Medical']
 
-def add(deposit_or_withdraw, income_or_expense, section):
-    while True:
-        display = Category(income_or_expense)
-        display.options(income_or_expense)
-
-        try:
-            x = display.instruction(section)
-    
-            if x in range (1, len(income_or_expense)+1):
-                category = income_or_expense[x-1]
-                description = input(f'Enter the {section} description: ')
-    
-                while True:
-                    try:
-                        amount = float(input(f'Enter the {section} amount: '))
-                        break
-                    except ValueError:
-                        print('\nPlease enter a number.\n')
-    
-                deposit_or_withdraw(Transactions(category, description, amount))
-
-            elif x == 0:
-                break
-    
-            elif x < 0 or x >= len(income_or_expense)+1:
-                display.new_category(income_or_expense)
-    
-        except ValueError:
-            print('\nPlease enter an integer.\n')
-
-
 class Category:
     def __init__(self, category_list):
         self.category_list = category_list
@@ -70,11 +39,38 @@ class Transactions:
         self.amount = amount
         self.details = details
 
-    # @property
     def deposit(self):
         self.details.append({'category': self.category, 'description': self.description, 'amount': self.amount})
 
-    # @property
     def withdraw(self):
         self.details.append({'category': self.category, 'description': self.description, 'amount': -self.amount})
 
+def add(deposit_or_withdraw, income_or_expense, section):
+    while True:
+        display = Category(income_or_expense)
+        display.options(income_or_expense)
+
+        try:
+            x = display.instruction(section)
+    
+            if x in range (1, len(income_or_expense)+1):
+                category = income_or_expense[x-1]
+                description = input(f'Enter the {section} description: ')
+    
+                while True:
+                    try:
+                        amount = float(input(f'Enter the {section} amount: '))
+                        break
+                    except ValueError:
+                        print('\nPlease enter a number.\n')
+    
+                deposit_or_withdraw(Transactions(category, description, amount))
+
+            elif x == 0:
+                break
+    
+            elif x < 0 or x >= len(income_or_expense)+1:
+                display.new_category(income_or_expense)
+    
+        except ValueError:
+            print('\nPlease enter an integer.\n')

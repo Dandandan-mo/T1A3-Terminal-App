@@ -1,3 +1,4 @@
+from datetime import date
 details = []
 
 income_category = ['Salary', 'Investment', 'Gifts']
@@ -22,12 +23,13 @@ class Category:
         title = "_"*23 + "Budget Report" + "_"*23 + "\n"
         items = ""
         total = 0
+        date_printed = date.today()
         for item in details:
             items += f"{item['category'][0:20]:20}" + f"{item['description']:30}" + f"{item['amount']:>9.2f}" + "\n"
 
             total += item['amount']
 
-        output = title + items + "Balance: " + str(total)
+        output = title + items + "\nBalance: " + str(total) + "\n\nDate Printed: " + str(date_printed) + "\n"
         print(output)
 
 class Transactions:
@@ -37,7 +39,7 @@ class Transactions:
         self.amount = amount
         self.details = details
 
-    def add(self):
+    def deposit(self):
         self.details.append({'category': self.category, 'description': self.description, 'amount': self.amount})
 
     def withdraw(self):

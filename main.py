@@ -24,7 +24,7 @@ while True:
                     print('\nPlease enter a number.\n')
 
             user_income = f.Transactions(category,description, amount)
-            user_income.add()
+            user_income.deposit()
 
         elif x == 0:
             print('You\'ve exited Income Section and entered Expense Section.')

@@ -19,7 +19,7 @@ while True:
         user_income.add()
 
     elif x == 0:
-        print('You\'ve exited Income Section.')
+        print('You\'ve exited Income Section and entered Expense Section.')
         break
 
     elif x < 0 or x >= len(f.income_category)+1:
@@ -39,7 +39,7 @@ while True:
         user_expense.withdraw()
 
     elif x == 0:
-        print('Printing budget report...\n')
+        print('You\'ve exited Expense Section. Printing budget report...\n')
         break
 
     elif x < 0 or x >= len(f.expense_category)+1:

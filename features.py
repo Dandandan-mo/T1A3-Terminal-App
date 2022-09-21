@@ -15,7 +15,7 @@ class Category:
             print(count+1, items)
 
     def new_category(self, category_list):
-        new = input('Please enter the name of the category: ')
+        new = input('Creating a new category. Please enter the name of the new category: ')
         return category_list.append(new.capitalize())
 
     def show_balance(self):

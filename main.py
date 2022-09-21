@@ -9,40 +9,61 @@ while True:
     display = f.Category(f.income_category)
     display.options(f.income_category)
 
-    x = display.instruction('income')
+    try:
+        x = display.instruction('income')
 
-    if x in range (1, len(f.income_category)+1):
-        category = f.income_category[x-1]
-        description = input('Enter description for the income: ')
-        amount = float(input('Enter the amount: '))
-        user_income = f.Transactions(category, description, amount)
-        user_income.add()
+        if x in range (1, len(f.income_category)+1):
+            category = f.income_category[x-1]
+            description = input('Enter description for the income: ')
 
-    elif x == 0:
-        print('You\'ve exited Income Section and entered Expense Section.')
-        break
+            while True:
+                try:
+                    amount = float(input('Enter the amount: '))
+                    break
+                except ValueError:
+                    print('\nPlease enter a number.\n')
 
-    elif x < 0 or x >= len(f.income_category)+1:
-        display.new_category(f.income_category)
+            user_income = f.Transactions(category,description, amount)
+            user_income.add()
+
+        elif x == 0:
+            print('You\'ve exited Income Section and entered Expense Section.')
+            break
+
+        elif x < 0 or x >= len(f.income_category)+1:
+            display.new_category(f.income_category)
+
+    except ValueError:
+        print('\nPlease enter an integer.\n')
 
 while True:
     display = f.Category(f.expense_category)
     display.options(f.expense_category)
 
-    x = display.instruction('expense')
+    try:
+        x = display.instruction('expense')
 
-    if x in range (1, len(f.expense_category)+1):
-        category = f.expense_category[x-1]
-        description = input('Enter description for the expense: ')
-        amount = float(input('Enter the amount: '))
-        user_expense = f.Transactions(category, description, amount)
-        user_expense.withdraw()
+        if x in range (1, len(f.expense_category)+1):
+            category = f.expense_category[x-1]
+            description = input('Enter description for the expense: ')
 
-    elif x == 0:
-        print('You\'ve exited Expense Section. Printing budget report...\n')
-        break
+            while True:
+                try:
+                    amount = float(input('Enter the amount: '))
+                    break
+                except ValueError:
+                    print('\nPlease enter a number.\n')
+            user_expense = f.Transactions(category, description, amount)
+            user_expense.withdraw()
 
-    elif x < 0 or x >= len(f.expense_category)+1:
-        display.new_category(f.expense_category)
+        elif x == 0:
+            print('You\'ve exited Expense Section. Printing budget report...\n')
+            break
+
+        elif x < 0 or x >= len(f.expense_category)+1:
+            display.new_category(f.expense_category)
+        
+    except ValueError:
+        print('\nPlease enter an integer.\n')
 
 display.show_balance()

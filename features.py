@@ -3,13 +3,16 @@ details = []
 income_category = ['Salary', 'Investment', 'Gifts']
 expense_category = ['Housing', 'Food', 'Transportation', 'Entertainment', 'Medical']
 
-def greet(section):
+def instruction(section):
     return int(input(f'''Enter an integer number to add an {section} in one of the above categories. Enter any integer other than 0 or the ones listed to customise a new category. Enter 0 to exit {section.capitalize()} Section.'''))
 
-def new_category(a_category):
-    new = input('Please enter the name of the category: ')
-    return a_category.append(new.capitalize())
+def options(a_category):
+    for count, items in enumerate(a_category):
+        print(count+1, items)
 
+def new_category(a_category_item):
+    new = input('Please enter the name of the category: ')
+    return a_category_item.append(new.capitalize())
 
 class Balance:
     # def __init__(self, name):

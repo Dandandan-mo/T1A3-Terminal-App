@@ -6,11 +6,10 @@ This app helps you track your incomes and expenses.
 ''')
 
 while True:
-    for count, items in enumerate(f.income_category):
-        print(count+1, items)
+    f.options(f.income_category)
 
-    x = f.greet('income')
-    
+    x = f.instruction('income')
+
     if x in range (1, len(f.income_category)+1):
         category = f.income_category[x-1]
         description = input('Enter description for the income: ')
@@ -26,10 +25,10 @@ while True:
         f.new_category(f.income_category)
 
 while True:
-    for count, items in enumerate(f.expense_category):
-        print(count+1, items)
+    f.options(f.expense_category)
 
-    x = f.greet('expense')
+    x = f.instruction('expense')
+
     if x in range (1, len(f.expense_category)+1):
         category = f.expense_category[x-1]
         description = input('Enter description for the expense: ')

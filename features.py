@@ -20,7 +20,7 @@ class Category:
         return category_list.append(new.capitalize())
 
     def show_balance(self):
-        title = "_"*23 + "Budget Report" + "_"*23 + "\n"
+        title = "-"*23 + "Budget Report" + "-"*23 + "\n"
         items = ""
         total = 0
         date_printed = date.today()

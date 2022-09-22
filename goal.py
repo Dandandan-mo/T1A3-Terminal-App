@@ -8,7 +8,7 @@ class SelectError(Exception):
 def set_goal():
     while True:
         try:
-            user_input = float(input('This app help calculate your incomes and expenses to see if you meet your saving goal. \nEnter the amount you aim to save here: '))
+            user_input = float(input('This app help track and calculate your incomes and expenses to see if you meet your saving goal. \nEnter the amount you aim to save here: '))
             print(f'Your saving goal is: {user_input}')
             break
         

@@ -23,7 +23,6 @@ while True:
     except g.SelectError as err:
         print(err)
 
-if remain > 0:
-    c.conversion(remain)
+c.conversion(saving_goal)
 
 cowsay.milk('Thanks for using the budget calculator. Bye ~')

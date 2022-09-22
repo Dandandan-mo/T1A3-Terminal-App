@@ -1,4 +1,7 @@
 from datetime import date
+import cowsay
+import multicurrency
+
 details = []
 
 income_category = ['Salary', 'Investment', 'Gifts']
@@ -62,7 +65,7 @@ def add(deposit_or_withdraw, income_or_expense, section):
                         amount = float(input(f'Enter the {section} amount: '))
                         break
                     except ValueError:
-                        print('\nPlease enter a number.\n')
+                        cowsay.cow('Please enter a number.')
     
                 deposit_or_withdraw(Transactions(category, description, amount))
 
@@ -73,4 +76,4 @@ def add(deposit_or_withdraw, income_or_expense, section):
                 display.new_category(income_or_expense)
     
         except ValueError:
-            print('\nPlease enter an integer.\n')
+            cowsay.cow('Please enter an integer.')

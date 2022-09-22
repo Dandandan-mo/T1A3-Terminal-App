@@ -1,5 +1,4 @@
 from datetime import date
-from xmlrpc.client import ResponseError
 import cowsay
 from py_currency_converter import convert
 import colorama
@@ -77,18 +76,6 @@ def balance():
     for item in details:
         total += item['amount']
     return total
-
-# def show_balance():
-#     title = "-"*23 + "Budget Report" + "-"*23 + "\n"
-#     items = ""
-#     total = 0
-#     date_printed = date.today()
-#     for item in details:
-#         items += f"{item['category'][0:20]:20}" + f"{item['description']:30}" + f"{item['amount']:>9.2f}" + "\n"
-#         total += item['amount']
-
-#     output = title + items + "\nBalance: " + str(total) + "\nDate Printed: " + str(date_printed) + "\n"
-#     print(output)
 
 def show_details():
     select = input('Do you want to view your income and expense details? Y/N ')

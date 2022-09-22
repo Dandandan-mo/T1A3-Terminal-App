@@ -2,14 +2,18 @@ import record as r
 import goal as g
 import cowsay
 
-cowsay.cow('Welcome to the budget calculater!\n')
+cowsay.milk('Welcome to the Budget Calculator! ')
 
-g.set_goal()
+saving_goal = g.set_goal()
 
 r.add(r.Transactions.deposit, r.income_category, 'income')
 r.add(r.Transactions.withdraw, r.expense_category, 'expense')
 
-g.compare()
+remain = g.balance()
+if remain >= saving_goal:
+    cowsay.milk('Congratulation, you\'ve achieved your saving goal!')
+else:
+    cowsay.milk(f'You still have to save {saving_goal-remain} to achieve your goal.')
 
 while True:
     try:

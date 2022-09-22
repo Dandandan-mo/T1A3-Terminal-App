@@ -1,6 +1,5 @@
 from py_currency_converter import convert
 import cowsay
-import goal as g
 
 currency_types = {'NZD': 'New Zealand Dollar', 'USD': 'United States Dollar', 'EUR': "Euro", 'CNY': 'Chinese Renminbi', 'JPY': 'Janpaniese Yen', 'GBP': 'Pound Sterling', 'CHF': 'Swiss Franc', 'CAD': 'Canandian Dollar', 'ZAR': 'South African Rand'}
 

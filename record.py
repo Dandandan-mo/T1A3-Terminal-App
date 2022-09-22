@@ -1,5 +1,6 @@
 import cowsay
-import colorama
+# from colorama import init, Fore
+# init()
 
 details = []
 
@@ -32,7 +33,7 @@ class Transactions:
         self.details.append({'category': self.category, 'description': self.description, 'amount': -self.amount})   
 
 def instruction(section):
-    return int(input(f'\nEnter an integer number to add an {section} in one of the above categories.\nEnter any integer other than 0 or the ones listed to customise a new category. \nEnter 0 when finish adding all {section} transactions. '))
+    return int(input(f'\nEnter an integer number to add an {section} in one of the above categories.\nEnter any integer other than 0 or the ones listed to customise a new category. \nEnter 0 to move on when finish adding all {section} transactions. '))
 
 def add(deposit_or_withdraw, income_or_expense, section):
     while True:

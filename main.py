@@ -2,6 +2,9 @@ import record as r
 import goal as g
 import currencies as c
 import cowsay
+# from colorama import init, Fore, Back
+
+# init()
 
 cowsay.milk('Welcome to the Budget Calculator! ')
 
@@ -14,7 +17,7 @@ remain = g.balance()
 if remain >= saving_goal:
     cowsay.milk('Congratulation, you\'ve achieved your saving goal!')
 else:
-    cowsay.milk(f'You still have to save {saving_goal-remain} to achieve your goal.')
+    cowsay.milk(f'You still have to save ${saving_goal-remain} to achieve your goal.')
 
 while True:
     try:

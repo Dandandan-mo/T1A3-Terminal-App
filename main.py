@@ -1,6 +1,6 @@
 import features as f
 
-print('Welcome to the budget tracker!\n')
+print('Welcome to the budget calculater!\n')
 
 f.add(f.Transactions.deposit, f.income_category, 'income')
 f.add(f.Transactions.withdraw, f.expense_category, 'expense')

@@ -9,7 +9,7 @@ class Category:
         self.category_list = category_list
 
     def instruction(self, section):
-        return int(input(f'Enter an integer number to add an {section} in one of the above categories.\nEnter any integer other than 0 or the ones listed to customise a new category. \nEnter 0 to exit {section.capitalize()} Section. '))
+        return int(input(f'\nEnter an integer number to add an {section} in one of the above categories.\nEnter any integer other than 0 or the ones listed to customise a new category. \nEnter 0 to exit {section.capitalize()} Section. '))
 
     def options(self, category_list):
         for count, items in enumerate(category_list):

@@ -1,12 +1,16 @@
 from datetime import date
+from xmlrpc.client import ResponseError
 import cowsay
-from multicurrency import AustralianDollar, USDollar, Euro, Yuan
+from py_currency_converter import convert
 import colorama
 
 details = []
 
 income_category = ['Salary', 'Investment', 'Gifts']
 expense_category = ['Housing', 'Food', 'Transportation', 'Entertainment', 'Medical']
+
+class SelectError(Exception):
+    pass
 
 class Category:
     def __init__(self, category_list):
@@ -31,10 +35,10 @@ class Transactions:
         self.details.append({'category': self.category, 'description': self.description, 'amount': self.amount})
 
     def withdraw(self):
-        self.details.append({'category': self.category, 'description': self.description, 'amount': -self.amount})
+        self.details.append({'category': self.category, 'description': self.description, 'amount': -self.amount})   
 
 def instruction(section):
-        return int(input(f'\nEnter an integer number to add an {section} in one of the above categories.\nEnter any integer other than 0 or the ones listed to customise a new category. \nEnter 0 when finish adding all {section} transactions. '))
+    return int(input(f'\nEnter an integer number to add an {section} in one of the above categories.\nEnter any integer other than 0 or the ones listed to customise a new category. \nEnter 0 when finish adding all {section} transactions. '))
 
 def add(deposit_or_withdraw, income_or_expense, section):
     while True:
@@ -68,14 +72,28 @@ def add(deposit_or_withdraw, income_or_expense, section):
         except ValueError:
             cowsay.cow('Please enter an integer.')
 
-def balance(category):
-        total = 0
-        for item in details:
-            if category == item['category']:
-                total += item['amount']
-        print(f'{category} subtotal: {total}')
+def balance():
+    total = 0
+    for item in details:
+        total += item['amount']
+    return total
 
-def show_balance():
+# def show_balance():
+#     title = "-"*23 + "Budget Report" + "-"*23 + "\n"
+#     items = ""
+#     total = 0
+#     date_printed = date.today()
+#     for item in details:
+#         items += f"{item['category'][0:20]:20}" + f"{item['description']:30}" + f"{item['amount']:>9.2f}" + "\n"
+#         total += item['amount']
+
+#     output = title + items + "\nBalance: " + str(total) + "\nDate Printed: " + str(date_printed) + "\n"
+#     print(output)
+
+def show_details():
+    select = input('Do you want to view your income and expense details? Y/N ')
+
+    if select == 'Y':
         title = "-"*23 + "Budget Report" + "-"*23 + "\n"
         items = ""
         total = 0
@@ -86,3 +104,11 @@ def show_balance():
 
         output = title + items + "\nBalance: " + str(total) + "\nDate Printed: " + str(date_printed) + "\n"
         print(output)
+    elif select == 'N':
+        pass
+    elif not select in ['Y', 'N']:
+        raise SelectError(cowsay.get_output_string('cow', (f'{select} is not a valid response. Enter "Y" or "N".')))
+
+
+
+

@@ -1,5 +1,4 @@
 import cowsay
-from py_currency_converter import convert
 import colorama
 
 details = []

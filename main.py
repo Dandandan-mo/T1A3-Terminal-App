@@ -1,5 +1,6 @@
 import record as r
 import goal as g
+import currencies as c
 import cowsay
 
 cowsay.milk('Welcome to the Budget Calculator! ')
@@ -21,3 +22,8 @@ while True:
         break
     except g.SelectError as err:
         print(err)
+
+if remain > 0:
+    c.conversion(remain)
+
+cowsay.milk('Thanks for using the budget calculator. Bye ~')

@@ -34,7 +34,7 @@ class Category:
             if category.capitalize() == item['category']:
                 items += f"{item['description'][0:20]:20}" + f"{item['amount']:>9.2f}" + "\n"
                 sub += item['amount']
-        output = title + items + "\nSubtotal: " + str(sub) + "\n"
+        output = title + items + '\nSubtotal: ' + str(sub) + '\n'
         print(Fore.CYAN + output)
         print(Fore.RESET)
         
@@ -95,7 +95,7 @@ def show_details():
     print(Style.BRIGHT + 'See below your transaction details:')
     print(Style.RESET_ALL)
 
-    title = "-"*23 + "Budget Report" + "-"*23 + "\n"
+    title = "-"*20 + "Transaction Summary" + "-"*20 + "\n"
     items = ""
     total = 0
     date_printed = date.today()
@@ -103,7 +103,7 @@ def show_details():
         items += f"{item['category'][0:20]:20}" + f"{item['description']:30}" + f"{item['amount']:>9.2f}" + "\n"
         total += item['amount']
 
-    output = title + items + "\nBalance: " + str(total) + "\nDate Printed: " + str(date_printed) + "\n"
+    output = title + items + '\nBalance: ' + str(total) + '\nDate: ' + str(date_printed) + '\n'
     print(Fore.CYAN + output)
     print(Fore.RESET)
 
@@ -123,3 +123,18 @@ def show_subtotal(category_list, section):
         else:
             print(Fore.RED)
             raise SelectError(cowsay.get_output_string('cow', (f'{select} is not a valid category.')))
+
+def show_cat_details():
+    while True:
+        try:
+            show_subtotal(Category.income_category, 'income')
+            break
+        except SelectError as err:
+            print(err)
+
+    while True:
+        try:
+            show_subtotal(Category.expense_category, 'expense')
+            break
+        except SelectError as err:
+            print(err)

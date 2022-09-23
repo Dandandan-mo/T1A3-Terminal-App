@@ -14,31 +14,23 @@ r.add(r.Transactions.deposit, r.Category.income_category, 'income')
 r.add(r.Transactions.withdraw, r.Category.expense_category, 'expense')
 
 r.show_details()
+r.show_cat_details()
 
-while True:
-    try:
-        r.show_subtotal(r.Category.income_category, 'income')
-        break
-    except r.SelectError as err:
-        print(err)
-
-while True:
-    try:
-        r.show_subtotal(r.Category.expense_category, 'expense')
-        break
-    except r.SelectError as err:
-        print(err)
-
-saving_goal = g.set_goal()
 remain = g.balance()
-print(Fore.CYAN)
-if remain >= saving_goal:
-    cowsay.milk('Congratulation, you\'ve achieved your saving goal!')
-else:
-    cowsay.milk(f'You still have to save ${saving_goal-remain} to achieve your goal.')
-print(Fore.RESET)
+set_goal = g.Comparison(remain)
+goal = set_goal.input_goal()
+set_goal.compare_goal()
 
-c.conversion(saving_goal)
+c.enter()
+
+while True:
+    try:
+        user_input = c.receive(goal, remain)
+        break
+    except c.InputError as err:
+        cowsay.cow(err)
+
+c.exchange(user_input)
 
 print(Fore.CYAN)
 cowsay.milk('Thanks for using the budget calculator. Bye ~')

@@ -1,6 +1,6 @@
 import cowsay
-# from colorama import init, Fore
-# init()
+from colorama import init, Fore, Back, Style
+init()
 
 details = []
 
@@ -16,7 +16,8 @@ class Category:
             print(count+1, items)
 
     def new_category(self):
-        new = input('Creating a new category. Please enter the name of the new category: ')
+        new = input(Style.BRIGHT + '\nCreating a new category. Please enter the name of the new category: ')
+        print(Style.RESET_ALL)
         return self.category_list.append(new.capitalize())
 
 class Transactions:
@@ -33,14 +34,15 @@ class Transactions:
         self.details.append({'category': self.category, 'description': self.description, 'amount': -self.amount})   
 
 def instruction(section):
-    return int(input(f'\nEnter an integer number to add an {section} in one of the above categories.\nEnter any integer other than 0 or the ones listed to customise a new category. \nEnter 0 to move on when finish adding all {section} transactions. '))
+    return int(input(Style.BRIGHT + f'Enter an integer number to add an {section} in one of the above categories.\nEnter any integer other than 0 or the ones listed to customise a new category. \nEnter 0 to move on when finish adding all {section} transactions. ' + Style.RESET_ALL))
 
 def add(deposit_or_withdraw, income_or_expense, section):
     while True:
         print('-'*59)
-        print(f'{section.upper()}\n')
+        print(Fore.MAGENTA + f'{section.upper()}\n')
         display = Category(income_or_expense)
         display.options()
+        print(Fore.RESET)
 
         try:
             x = instruction(section)
@@ -54,7 +56,9 @@ def add(deposit_or_withdraw, income_or_expense, section):
                         amount = float(input(f'Enter the {section} amount: '))
                         break
                     except ValueError:
+                        print(Fore.RED)
                         cowsay.cow('Please enter a number.')
+                        print(Fore.RESET)
     
                 deposit_or_withdraw(Transactions(category, description, amount))
 
@@ -65,7 +69,9 @@ def add(deposit_or_withdraw, income_or_expense, section):
                 display.new_category()
     
         except ValueError:
-            cowsay.cow('Please enter an integer.')
+            print(Fore.RED)
+            cowsay.cow('Please enter an integer. ')
+            print(Fore.RESET)
 
 
 

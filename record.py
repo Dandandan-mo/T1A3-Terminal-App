@@ -1,5 +1,5 @@
 import cowsay
-from colorama import init, Fore, Back, Style
+from colorama import init, Fore, Style
 init()
 
 details = []

@@ -12,6 +12,10 @@ class InputError(Exception):
     pass
 
 def receive(choice_1, choice_2):
+    print(Fore.MAGENTA)
+    for count, items in enumerate(option):
+        print(count+1, items)
+    print(Fore.RESET)
     user_input = input('Enter a number to choose which amount you want to convert: ')
     if user_input == '1':
         user_input = choice_1
@@ -20,7 +24,8 @@ def receive(choice_1, choice_2):
     elif user_input == '3':
         user_input = float(input('Enter another amount: '))
     else:
-        raise InputError('input has to be 1, or 2, or 3')
+        print(Fore.RED)
+        raise InputError(cowsay.get_output_string('cow', 'input has to be 1, or 2, or 3'))
     return user_input
 
 def exchange(user_input):
@@ -56,8 +61,6 @@ def enter():
             continue
 
     print('\nThis budget calculator supports currency convertion.\n')
-    print(Fore.MAGENTA)
 
-    for count, items in enumerate(option):
-        print(count+1, items)
-    print(Fore.RESET)
+
+    

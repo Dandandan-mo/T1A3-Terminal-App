@@ -2,7 +2,7 @@ import record as r
 import goal as g
 import currencies as c
 import cowsay
-from colorama import init, Fore
+from colorama import init, Fore, Style
 
 init()
 
@@ -14,7 +14,24 @@ r.add(r.Transactions.deposit, r.Category.income_category, 'income')
 r.add(r.Transactions.withdraw, r.Category.expense_category, 'expense')
 
 r.show_details()
-r.show_cat_details()
+while True:
+    try:
+        r.show_cat_details(r.Category.income_category, 'income')
+        break
+    except r.RangeError as err:
+        print(err)
+    except ValueError:
+        print('Input must be an integer.')
+while True:
+    try:
+        r.show_cat_details(r.Category.expense_category, 'expense')
+        break
+    except r.RangeError as err:
+        print(err)
+    except ValueError:
+        print(Fore.RED)
+        cowsay.cow('Input must be an integer.')
+        print(Fore.RESET)
 
 remain = g.balance()
 set_goal = g.Comparison(remain)
@@ -28,7 +45,11 @@ while True:
         user_input = c.receive(goal, remain)
         break
     except c.InputError as err:
-        cowsay.cow(err)
+        print(err)
+    except ValueError:
+        print(Fore.RED)
+        cowsay.cow('Input has to be a number.')
+        print(Fore.RESET)
 
 c.exchange(user_input)
 

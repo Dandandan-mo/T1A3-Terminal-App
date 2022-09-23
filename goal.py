@@ -18,6 +18,7 @@ class Comparison:
     def input_goal(self):
         while True:
             try:
+                print(Fore.RESET)
                 self.goal = float(input(Style.BRIGHT + '\nDo you have a saving goal?\nEnter the amount you aim to save here: '))
                 print(Back.CYAN + f'Your saving goal is: {self.goal}' + Back.RESET + Style.RESET_ALL)
                 break

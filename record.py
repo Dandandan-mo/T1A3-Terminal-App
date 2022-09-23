@@ -5,7 +5,7 @@ init()
 
 details = []
 
-class SelectError(Exception):
+class RangeError(Exception):
     pass
 
 class Category:
@@ -107,34 +107,18 @@ def show_details():
     print(Fore.CYAN + output)
     print(Fore.RESET)
 
-def show_subtotal(category_list, section):
+def show_cat_details(category_list, section):
     while True:
         print(Fore.MAGENTA)
         print(f'{section.upper()}S\n')
         cat_list = Category(category_list)
         cat_list.options()
         print(Fore.RESET)
-        select = input(Style.BRIGHT + 'Enter name of the category to view subtotal. Enter 0 to continue: ')
-        print(Style.RESET_ALL)
-        if select.capitalize() in category_list:
-            cat_list.cat_details(select)
-        elif select == '0':
+        select = int(input(Style.BRIGHT + 'Enter integer for a category to view subtotal. Enter 0 to skip: ' + Style.RESET_ALL))
+        if select not in range (0, len(category_list)+1):
+            print(Fore.RED)
+            raise RangeError(cowsay.get_output_string('cow', 'Input out of range.'))
+        elif select == 0:
             break
         else:
-            print(Fore.RED)
-            raise SelectError(cowsay.get_output_string('cow', (f'{select} is not a valid category.')))
-
-def show_cat_details():
-    while True:
-        try:
-            show_subtotal(Category.income_category, 'income')
-            break
-        except SelectError as err:
-            print(err)
-
-    while True:
-        try:
-            show_subtotal(Category.expense_category, 'expense')
-            break
-        except SelectError as err:
-            print(err)
+            Category(category_list).cat_details(category_list[select-1])

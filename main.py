@@ -10,6 +10,7 @@ print(Fore.CYAN)
 cowsay.milk('Welcome to the Budget Calculator!')
 print(Fore.RESET)
 
+if __name__ == '__main__'
 r.add(r.Transactions.deposit, r.Category.income_category, 'income')
 r.add(r.Transactions.withdraw, r.Category.expense_category, 'expense')
 

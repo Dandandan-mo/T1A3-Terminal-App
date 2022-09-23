@@ -2,7 +2,7 @@ import record as r
 import goal as g
 import currencies as c
 import cowsay
-from colorama import init, Fore, Style
+from colorama import init, Fore
 
 init()
 

@@ -1,13 +1,19 @@
 import cowsay
 from colorama import init, Fore, Style
+from datetime import date
 init()
 
 details = []
 
-income_category = ['Salary', 'Investment', 'Gifts']
-expense_category = ['Housing', 'Food', 'Transportation', 'Entertainment', 'Medical']
+class SelectError(Exception):
+    pass
 
 class Category:
+
+    income_category = ['Salary', 'Investment', 'Gifts']
+    expense_category = ['Housing', 'Food', 'Transportation', 'Entertainment', 'Medical']
+    combined_category = income_category + expense_category
+
     def __init__(self, category_list):
         self.category_list = category_list
 
@@ -20,6 +26,18 @@ class Category:
         print(Style.RESET_ALL)
         return self.category_list.append(new.capitalize())
 
+    def cat_details(self, category):
+        sub = 0
+        items = ''
+        title = f'{category.capitalize():-^30}\n'
+        for item in details:
+            if category.capitalize() == item['category']:
+                items += f"{item['description'][0:20]:20}" + f"{item['amount']:>9.2f}" + "\n"
+                sub += item['amount']
+        output = title + items + "\nSubtotal: " + str(sub) + "\n"
+        print(Fore.CYAN + output)
+        print(Fore.RESET)
+        
 class Transactions:
     def __init__(self, category, description, amount):
         self.category = category
@@ -39,7 +57,7 @@ def instruction(section):
 def add(deposit_or_withdraw, income_or_expense, section):
     while True:
         print('-'*59)
-        print(Fore.MAGENTA + f'{section.upper()}\n')
+        print(Fore.MAGENTA + f'{section.upper()}' + 'S\n')
         display = Category(income_or_expense)
         display.options()
         print(Fore.RESET)
@@ -73,5 +91,35 @@ def add(deposit_or_withdraw, income_or_expense, section):
             cowsay.cow('Please enter an integer. ')
             print(Fore.RESET)
 
+def show_details():
+    print(Style.BRIGHT + 'See below your transaction details:')
+    print(Style.RESET_ALL)
 
+    title = "-"*23 + "Budget Report" + "-"*23 + "\n"
+    items = ""
+    total = 0
+    date_printed = date.today()
+    for item in details:
+        items += f"{item['category'][0:20]:20}" + f"{item['description']:30}" + f"{item['amount']:>9.2f}" + "\n"
+        total += item['amount']
 
+    output = title + items + "\nBalance: " + str(total) + "\nDate Printed: " + str(date_printed) + "\n"
+    print(Fore.CYAN + output)
+    print(Fore.RESET)
+
+def show_subtotal(category_list, section):
+    while True:
+        print(Fore.MAGENTA)
+        print(f'{section.upper()}S\n')
+        cat_list = Category(category_list)
+        cat_list.options()
+        print(Fore.RESET)
+        select = input(Style.BRIGHT + 'Enter name of the category to view subtotal. Enter 0 to continue: ')
+        print(Style.RESET_ALL)
+        if select.capitalize() in category_list:
+            cat_list.cat_details(select)
+        elif select == '0':
+            break
+        else:
+            print(Fore.RED)
+            raise SelectError(cowsay.get_output_string('cow', (f'{select} is not a valid category.')))

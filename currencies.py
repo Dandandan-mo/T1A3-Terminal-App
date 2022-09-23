@@ -8,14 +8,14 @@ currency_types = {'NZD': 'New Zealand Dollar', 'USD': 'United States Dollar', 'E
 
 def conversion(goal):
     print('-'*59)
-    print('This budget calculator supports currency convertion.\nBelow is a list of codes for supported currencies:\n')
+    print('This budget calculator supports currency convertion.\n')
 
     for key, value in currency_types.items():
         print(Fore.MAGENTA + f'The code for {value} is {key}')
         print(Fore.RESET)
 
     while True:
-        select_currency = input(Style.BRIGHT + '\nEnter a code to convert your saving goal in Australian Dollar into another currency.\nEnter 0 to exit and terminate the app. ')
+        select_currency = input(Style.BRIGHT + '\nEnter a currency code to convert your saving goal in Australian Dollar into another currency.\nEnter 0 to exit and terminate the app. ')
         print(Style.RESET_ALL)
 
         convert_currencies = convert(base='AUD', amount=goal, to=[select_currency])

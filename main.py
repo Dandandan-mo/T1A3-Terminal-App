@@ -10,11 +10,26 @@ print(Fore.CYAN)
 cowsay.milk('Welcome to the Budget Calculator!')
 print(Fore.RESET)
 
+r.add(r.Transactions.deposit, r.Category.income_category, 'income')
+r.add(r.Transactions.withdraw, r.Category.expense_category, 'expense')
+
+r.show_details()
+
+while True:
+    try:
+        r.show_subtotal(r.Category.income_category, 'income')
+        break
+    except r.SelectError as err:
+        print(err)
+
+while True:
+    try:
+        r.show_subtotal(r.Category.expense_category, 'expense')
+        break
+    except r.SelectError as err:
+        print(err)
+
 saving_goal = g.set_goal()
-
-r.add(r.Transactions.deposit, r.income_category, 'income')
-r.add(r.Transactions.withdraw, r.expense_category, 'expense')
-
 remain = g.balance()
 print(Fore.CYAN)
 if remain >= saving_goal:
@@ -22,14 +37,6 @@ if remain >= saving_goal:
 else:
     cowsay.milk(f'You still have to save ${saving_goal-remain} to achieve your goal.')
 print(Fore.RESET)
-
-while True:
-    try:
-        g.show_details()
-        break
-    except g.SelectError as err:
-        print(err)
-        print(Fore.RESET)
 
 c.conversion(saving_goal)
 

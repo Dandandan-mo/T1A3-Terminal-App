@@ -18,6 +18,7 @@ then
   elif [[ $1 == "Windows" ]]
   then
     py -m ensurepip --upgrade
+  fi
 fi
 
 if --version pip != 3
@@ -28,6 +29,7 @@ then
   elif [[ $1 == "Windows" ]]
   then
     py -m pip install --upgrade pip
+  fi
 fi
 
 # create a virtual environment, install packages

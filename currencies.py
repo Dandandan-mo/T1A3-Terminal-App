@@ -34,7 +34,7 @@ def exchange(user_input):
         print(Fore.RESET)
     
     while True:
-        select_currency = input(Style.BRIGHT + '\nEnter a currency code to convert Australian Dollar into another currency.\nEnter 0 to exit and terminate the app. ')
+        select_currency = input(Style.BRIGHT + '\nEnter a currency code to convert Australian Dollar into another currency (See examples of some code above).\nEnter 0 to exit and terminate the app. ')
         print(Style.RESET_ALL)
 
         if select_currency in list(currency_types.keys()):

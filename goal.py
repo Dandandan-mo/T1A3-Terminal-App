@@ -16,18 +16,9 @@ class Comparison:
         self.goal = 0
 
     def input_goal(self):
-        while True:
-            try:
-                print(Fore.RESET)
-                self.goal = float(input(Style.BRIGHT + '\nDo you have a saving goal?\nEnter the amount you aim to save here: '))
-                print(Back.CYAN + f'Your saving goal is: {self.goal}' + Back.RESET + Style.RESET_ALL)
-                break
-        
-            except ValueError:
-                print(Style.RESET_ALL)
-                print(Fore.RED)
-                cowsay.cow('The amount entered has to be a number.')
-                print(Fore.RESET)
+        print(Fore.RESET)
+        self.goal = float(input(Style.BRIGHT + '\nDo you have a saving goal?\nEnter the amount you aim to save here: '))
+        print(Back.CYAN + f'Your saving goal is: {self.goal}' + Back.RESET + Style.RESET_ALL)
         return self.goal
             
     def compare_goal(self):

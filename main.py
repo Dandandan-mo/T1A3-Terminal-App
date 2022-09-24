@@ -2,7 +2,7 @@ import record as r
 import goal as g
 import currencies as c
 import cowsay
-from colorama import init, Fore
+from colorama import init, Fore, Style
 
 init()
 
@@ -10,7 +10,6 @@ print(Fore.CYAN)
 cowsay.milk('Welcome to the Budget Calculator!')
 print(Fore.RESET)
 
-if __name__ == '__main__'
 r.add(r.Transactions.deposit, r.Category.income_category, 'income')
 r.add(r.Transactions.withdraw, r.Category.expense_category, 'expense')
 
@@ -22,7 +21,9 @@ while True:
     except r.RangeError as err:
         print(err)
     except ValueError:
-        print('Input must be an integer.')
+        print(Fore.RED)
+        cowsay.cow('Input must be an integer.')
+        print(Fore.RESET)
 while True:
     try:
         r.show_cat_details(r.Category.expense_category, 'expense')
@@ -36,7 +37,16 @@ while True:
 
 remain = g.balance()
 set_goal = g.Comparison(remain)
-goal = set_goal.input_goal()
+while True:
+    try:
+        goal = set_goal.input_goal()
+        break
+    except ValueError:
+        print(Style.RESET_ALL)
+        print(Fore.RED)
+        cowsay.cow('The amount entered has to be a number.')
+        print(Fore.RESET)
+        
 set_goal.compare_goal()
 
 c.enter()

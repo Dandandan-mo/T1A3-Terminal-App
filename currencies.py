@@ -21,17 +21,17 @@ def receive(choice_1, choice_2):
     print(Fore.RESET)
     user_input = input('Enter a number to choose which amount you want to convert: ')
     if user_input == '1':
-        user_input = choice_1
+        user_choice = choice_1
     elif user_input == '2':
-        user_input = choice_2
+        user_choice = choice_2
     elif user_input == '3':
-        user_input = float(input('Enter another amount: '))
+        user_choice = float(input('Enter another amount: '))
     else:
         print(Fore.RED)
         raise InputError(cowsay.get_output_string('cow', 'input has to be 1, or 2, or 3'))
-    return user_input
+    return user_choice
 
-def exchange(user_input):
+def exchange(user_choice):
     for key, value in currency_types.items():
         print(Fore.MAGENTA + f'The code for {value} is {key}')
         print(Fore.RESET)
@@ -41,10 +41,10 @@ def exchange(user_input):
         print(Style.RESET_ALL)
 
         if select_currency in list(currency_types.keys()):
-            converted = convert(base='AUD', amount=user_input, to=[select_currency])
+            converted = convert(base='AUD', amount=user_choice, to=[select_currency])
             for key, value in converted.items():
                 print(Style.BRIGHT)
-                print(Back.CYAN + f'\n{user_input} AUD is equal to {round(value, 1)} {key}' + Back.RESET)
+                print(Back.CYAN + f'\n{user_choice} AUD is equal to {round(value, 1)} {key}' + Back.RESET)
             print(Style.RESET_ALL)
 
         elif select_currency == '0':

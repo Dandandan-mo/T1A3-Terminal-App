@@ -62,7 +62,13 @@ while True:
         cowsay.cow('Input has to be a number.')
         print(Fore.RESET)
 
-c.exchange(user_input)
+while True:
+    try:
+        c.exchange(user_input)
+        break
+    except c.CodeError as err:
+        print(err)
+        print(Fore.RESET)
 
 print(Fore.CYAN)
 cowsay.milk('Thanks for using the budget calculator. Bye ~')

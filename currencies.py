@@ -11,6 +11,9 @@ option = ['saving goal', 'remaining balance', 'a new input amount']
 class InputError(Exception):
     pass
 
+class CodeError(Exception):
+    pass
+
 def receive(choice_1, choice_2):
     print(Fore.MAGENTA)
     for count, items in enumerate(option):
@@ -48,8 +51,8 @@ def exchange(user_input):
             break
         else:
             print(Fore.RED)
-            cowsay.cow('Invalid code, try again.')
-            print(Fore.RESET)
+            raise CodeError(cowsay.get_output_string('cow', 'Invalid code, please try again.'))
+            
 
 def enter():
     while True:
@@ -61,6 +64,3 @@ def enter():
             continue
 
     print('\nThis budget calculator supports currency convertion.\n')
-
-
-    

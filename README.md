@@ -21,8 +21,8 @@ Users can enter their saving goal (a number) and the app will compare the goal w
 The end user of this application are people with additional incomes or expenses in other currencies (such as international students or working visa holders). In some occasions, these users need to transfer their money abroad or have additional incomes in other currencies from other countries, which is when exchange rates are taken into consideration when budgets are being managed. Therefore, the last feature of this app enables users to convert their Australian dollar into another currency. They have the options to convert their total remaining balance, their saving goal, or enter a new amount for conversion. Users can enter the ISO currency code and the application will display the amount coverted into the corresponding currency.
 ## Implementation plan
 The project management platform used for the development of this application is Trello ([click to view the Trello board](https://trello.com/invite/b/DzCCyjbo/537cd16c934e3e696965d6dfb5955c65/t1a3-terminal-app-budget-app)).
-![trelloboard](/docs//trelloboard.png)
-![feature1](/docs/docs/feature1.png)
+![trelloboard](/docs/trelloboard.png)
+![feature1](/docs/feature1.png)
 ![feature2](/docs/feature2.png)
 ![feature3](/docs/feature3.png)
 ![feature4](/docs/feature4.png)

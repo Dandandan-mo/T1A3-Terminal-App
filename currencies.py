@@ -48,7 +48,7 @@ def exchange(user_input):
             break
         else:
             print(Fore.RED)
-            cowsay.cow('Wrong code, try again.')
+            cowsay.cow('Invalid code, try again.')
             print(Fore.RESET)
 
 def enter():

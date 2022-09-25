@@ -38,4 +38,4 @@ source  .venv/bin/activate
 pip install -r requirements.txt
 
 # run python main.py to start executing the app
-python3 main.py
+python3 main.py 
